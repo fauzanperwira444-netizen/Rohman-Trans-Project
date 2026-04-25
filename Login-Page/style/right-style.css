@@ -1,0 +1,175 @@
+
+p{font-weight: bold;}
+.right-custom-grid{
+        display: flex;
+        flex-direction: column;
+        padding: 0;
+        padding-bottom: 80px;
+    }
+    .menu-box-custom{
+        width: 100%;
+        display: flex;
+        flex-direction: row;
+        height: 50px;
+    }
+       .menu-login, .menu-daftar {
+            flex: 1;
+            width: 100%;   
+            margin: 0;
+            padding: 0;
+            color: #7A7A7A;
+            background-color: #F8F8F8;
+            border: 0;
+            cursor: pointer;
+            border-bottom: solid;
+            border-color: #aaa;
+            border-width: 1px;
+            transition: 0.1s;
+        }
+        .menu-login:hover, .menu-daftar:hover{
+            color: black;
+            border-bottom: solid;
+            border-color: #C9A24A;
+        }
+
+    .login-box-custom{
+        display: flex;
+        flex-direction: column;
+        flex: 1;
+        margin-left: 30px;
+        margin-right: 30px;
+    }
+        .h1{
+            margin: 0;
+            margin-top: 30px;
+            font-size: 16px;
+            font-weight: bold;
+        }
+        .h2{
+            margin: 0;
+            margin-top: 10px;
+            font-size: 12px;
+            font-weight: bold;
+            color:#7A7A7A ;
+        }
+        .input-css {
+            margin-top: 12px;
+        }
+        .input-css p{
+            font-size: 10px;
+        }
+        .input-css input{
+            margin-top: 5px;
+            border: solid;
+            border-width: 1px;
+            border-color: #7A7A7A;
+            border-radius: 5px;
+            padding-bottom: 3px;
+            padding-left: 10px;
+            font-size: 12px;
+            width: 100%;
+            height: 40px;
+            
+        }
+         .input-css input::placeholder{
+            font-size: 12px;
+            transition: 0.3s;
+            
+         }
+         .input-css input:focus{
+            outline-color: #C9A24A;
+         }
+         .right-text {
+            margin-top: 5px;
+            color: #C9A24A;
+            text-align: right;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+        .input-css input:hover{
+            border-color: #C9A24A;
+        }
+        .cta-css{
+            margin-top: 12px;
+        }
+        .cta-css button{
+            width: 100%;
+            height: 40px;
+            border: 0;
+            border-radius: 10px;
+            background-color: #C9A24A;
+            transition: 0.3s;
+        }
+        .cta-css p{
+            font-weight: 400;
+        }
+        .cta-css button:hover{
+            background-color: #ab8b40;
+        }
+
+        .divider {
+            display: flex;
+            align-items: center;
+            text-align: center;
+            margin-top: 16px;
+            color: #aaa; /* warna abu-abu */
+            font-family: serif; /* biar mirip dengan contoh */
+            }
+
+
+            .divider::before,
+            .divider::after {
+            content: "";
+            flex: 1;
+            border-bottom: 1px solid #ccc; /* garis tipis abu-abu */
+            }
+
+            .divider:not(:empty)::before {
+            margin-right: 0.5em;
+            }
+
+            .divider:not(:empty)::after {
+            margin-left: 0.5em;
+            }
+
+        .google-btn {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px; /* jarak antara logo dan teks */
+            background-color: #fff;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            padding: 8px 16px;
+            font-size: 14px;
+            font-family: Arial, sans-serif;
+            cursor: pointer;
+            transition: 0.3s;
+            }
+
+            .google-btn img {
+            width: 18px;
+            height: 18px;
+            }
+
+            .google-btn:hover {
+            background-color: #f5f5f5;
+            border-color: #aaa;
+            }
+
+        .to-registration{
+            margin-top: 20px;
+            text-align: center;
+            font-weight: normal;
+            font-size: 11px;
+            color: #7A7A7A;
+        }
+         .to-registration span{
+            color: #C9A24A;
+            cursor: pointer;
+            transition: 0.3s;
+         }
+          .to-registration span:hover{
+            color: #ab8b40;
+          }
+            
