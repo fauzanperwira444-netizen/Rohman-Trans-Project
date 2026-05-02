@@ -1,0 +1,131 @@
+.left-custom-grid{
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    padding: 0;
+    background-color:#0F0F0F;
+    color: white;
+    font-family: 'Times New Roman', Times, serif;
+    border-right: solid #C9A24A;
+}
+.left-custom-grid p{
+    font-family: 'Times New Roman', Times, serif;
+}
+.info-box{
+    margin-top: 30px;
+    margin-left: 30px;
+}
+    .logo-css{
+        display: flex;
+        flex-direction: row;
+        align-items: self-start;
+    }
+         .logo-css img{
+            width: 50px;
+            border: solid;
+            border-width: 2px;
+            border-color: #C9A24A;
+            border-radius: 50px;
+            margin-bottom: 20px;
+         }
+         .logo-css p{
+            font-family: 'Times New Roman';
+            color: #E5C97A;
+            font-weight: lighter;
+            margin-top: -5px;
+         }
+         .nama-logo{
+            margin-top: 7px;
+            margin-left: 10px;
+         }
+    .member-area {
+        margin-top: 100px;
+        display: flex;
+        align-items: center;
+        font-family: 'Times New Roman', Times, serif;
+        font-size: 10px;
+        font-weight: lighter;
+        color: #d4af37; /* warna emas */
+        }
+
+        .member-area .line {
+        width: 50px;
+        height: 1px;
+        background-color: #d4af37;
+        margin-right: 10px;
+        }
+
+    .tagline-css{
+        margin-top: 25px;
+        display: flex;
+        flex-direction: column;
+        align-items: self-start;
+    }
+        .tagline-css p{
+            color:white;
+            font-weight: lighter;
+            font-size: 20px;
+        }
+        .tagline-css span{
+            color: #C9A24A;
+            font-weight: lighter;
+            font-size: 20px;
+            font-family: 'Times New Roman', Times, serif;
+        }
+    .features{
+        margin-left: -8px;
+    }
+        .features ul {
+        list-style-type: disc;
+        padding-left: 20px;
+        }
+
+        .features li {
+        margin: 15px 0;
+        font-size: 12px;
+        }    
+        
+     @media (max-width: 991px) {
+    .left-custom-grid{
+        border-right: none;
+        border-bottom: solid #C9A24A;        
+    }
+    .info-box {
+        margin: 20px;
+        margin-bottom: 0;
+    }
+    .tagline-css{
+        margin-top: 0;
+    }
+    .tagline-css p {
+        font-size: 16px;
+    }
+    .tagline-css span{
+        font-size: 16px;
+    }
+    
+    
+}
+
+ @media (max-width: 575px){
+
+
+    
+    .logo-css{
+        align-items: center;
+        justify-content: center; 
+        text-align: center;
+        flex-direction: column;
+    }
+    .logo img{
+        margin-bottom: 5px;
+    }
+    .nama-logo{
+        margin-top: 5px;
+        margin-bottom: 12px;
+    }
+    .tagline-css{
+        margin-top: 0;
+        align-items: center;
+    }
+ }
