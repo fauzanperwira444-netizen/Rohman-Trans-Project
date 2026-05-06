@@ -1,9 +1,24 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
+import { InputField } from "../elements/InputField"
 import '../styles/right-style.css'
 export function Registrasi(){
 
-    const [isPwdFocus, setIsPwdFocus]=useState(false);
+    //const [isPwdFocus, setIsPwdFocus]=useState(false);
+
+    const[form, setForm] = useState({
+    nama:"",
+    email:"",
+    password: "",
+    verfpwd:""
+    });
+
+    function handleChange(e) {
+    setForm({
+      ...form,
+      [e.target.name]: e.target.value
+     });
+    }
 
     return(
         <>
@@ -16,50 +31,59 @@ export function Registrasi(){
                             Buat akun Rohman Trans milikmu
                         </p>
                     </div>
+                <form >
                     <div className="row">
-
-                         <div className="col-12 col-sm-6 col-lg-12 input-css">
-                            <p>Nama</p>
-                            <input type="text" placeholder="Masukan nama" />
+                        <div className="col-12 col-sm-6 col-lg-12 input-css">
+                            <InputField
+                                label="Nama"
+                                name="nama"
+                                value={form.nama}
+                                onChange={handleChange}
+                                placeholder="Masukan Nama Lengkap"
+                            />
                         </div>
 
-                        <div className="col-12 col-sm-6 col-lg-12 input-css">
-                            <p>Email</p>
-                            <input type="text" placeholder="nama@gmail.com" />
+                         <div className="col-12 col-sm-6 col-lg-12 ">
+                            <InputField
+                                label="email"
+                                name="email"
+                                value={form.email}
+                                onChange={handleChange}
+                                placeholder="nama@gmail.com"
+                            />
                         </div>
 
-                        <div className="col-12 col-sm-6 col-lg-12 input-css">
-                            <p>
-                                Password
-                            </p>
-                            <input
+                        <div className="col-12 col-sm-6 col-lg-12 ">
+                            <InputField
+                                label="Password"
+                                name="password"
                                 type="password"
-                                placeholder="Masukan Password"
-                                onFocus={()=>setIsPwdFocus(true)}
-                                onBlur={()=>setIsPwdFocus(false)}
-                              />
-                            {isPwdFocus && (
-                                <div className="password-hint">
-                                    <p>Password minimal 8 karakter</p>
-                                    <p>Harus mengandung huruf dan angka</p>
-                                </div>
-                            )}
-
+                                value={form.password}
+                                onChange={handleChange}     
+                                placeholder="Masukan password"
+                            />
                         </div>
 
-                        <div className="col-12 col-sm-6 col-lg-12 input-css">
-                            <p>
-                                konfirmasi Password
-                            </p>
-                            <input type="password" placeholder="Masukan Password" />
+                        <div className="col-12 col-sm-6 col-lg-12 ">
+                            <InputField
+                                label="Konfirmasi Password"
+                                name="password"
+                                type="password"
+                                value={form.verfpwd}
+                                onChange={handleChange}       
+                                placeholder="Masukan password"
+                            />  
                         </div>
+
                     </div>
 
-                    <div className="cta-css">
+                     <div className="cta-css">
                         <button>
                             <p>Buat Akun </p>
                         </button>
                     </div>
+                    
+                </form>    
 
                     <div className="divider">
                         <span>atau</span>
