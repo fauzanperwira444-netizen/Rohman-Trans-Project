@@ -19,6 +19,7 @@ export function Registrasi(){
       [e.target.name]: e.target.value
      });
     }
+
      function validate(form) {
         const errors = {};
 
@@ -49,7 +50,7 @@ export function Registrasi(){
 
      const [errors, setErrors] = useState({});
 
-    function handleSubmit(e) {
+    async function handleSubmit(e) {
     e.preventDefault();
 
     const validationErrors = validate(form);
@@ -58,8 +59,27 @@ export function Registrasi(){
         setErrors(validationErrors);
         return;
     }
-
-    console.log("Form valid:", form);
+    try{
+        const respon = await fetch(
+            "",
+             {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify({
+                    name: form.name,
+                    email: form.email,
+                    password: form.password
+                })
+            }
+        )
+        const data = await respon.json();
+        console.log(data);
+    }
+    catch (error) {
+    console.log(error);
+  }
     }
 
     return(
@@ -70,7 +90,7 @@ export function Registrasi(){
 
                     <div className="h2">
                         <p>
-                            Buat akun Rohman Trans milikmu
+                            Buat akun Rohman Trans Anda
                         </p>
                     </div>
                 <form onSubmit={handleSubmit}>

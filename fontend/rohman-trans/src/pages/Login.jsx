@@ -35,7 +35,7 @@ export function Login(){
 
     const [errors, setErrors] = useState({});
 
-    function handleSubmit(e) {
+    async function handleSubmit(e) {
     e.preventDefault();
 
     const validationErrors = validate(form);
@@ -45,7 +45,26 @@ export function Login(){
         return;
     }
 
-    console.log("Form valid:", form);
+    try {
+        const response = await fetch(
+            "",
+             {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify(form)
+            });
+
+        const data = await response.json();
+
+        console.log(data);
+
+    } 
+    catch (error) {
+        console.log(error);
+    }
+
     }
     return(
         <>
