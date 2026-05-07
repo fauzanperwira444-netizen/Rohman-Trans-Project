@@ -4,83 +4,7 @@ import { InputField } from "../elements/InputField"
 import '../styles/right-style.css'
 export function Registrasi(){
 
-    //const [isPwdFocus, setIsPwdFocus]=useState(false);
-
-    const[form, setForm] = useState({
-    nama:"",
-    email:"",
-    password: "",
-    verfpwd:""
-    });
-
-    function handleChange(e) {
-    setForm({
-      ...form,
-      [e.target.name]: e.target.value
-     });
-    }
-
-     function validate(form) {
-        const errors = {};
-
-        
-        if (!form.nama) {
-            errors.nama = "Nama wajib diisi";
-        } 
-        if (!form.email) {
-            errors.email = "Email wajib diisi";
-        } else if (!form.email.includes("@")) {
-            errors.email = "Format email tidak valid";
-        }
-
-        if (!form.password) {
-            errors.password = "Password wajib diisi";
-        } else {
-        const pwdRegex = /^(?=.*[A-Z])(?=.*[0-9])(?=.*[._!])[A-Za-z0-9._!]{8,20}$/;
-        if (!pwdRegex.test(form.password)) {
-            errors.password = "Password harus 8-20 karakter, mengandung minimal 1 huruf besar, 1 angka, dan 1 simbol (.,_!)";
-        }
-    }
-        if (!form.verfpwd) {
-            errors.verfpwd = "Lakukan konfirmasi password";
-        } 
-
-        return errors;
-    }
-
-     const [errors, setErrors] = useState({});
-
-    async function handleSubmit(e) {
-    e.preventDefault();
-
-    const validationErrors = validate(form);
-
-    if (Object.keys(validationErrors).length > 0) {
-        setErrors(validationErrors);
-        return;
-    }
-    try{
-        const respon = await fetch(
-            "",
-             {
-                method: "POST",
-                headers: {
-                    "Content-Type": "application/json"
-                },
-                body: JSON.stringify({
-                    name: form.name,
-                    email: form.email,
-                    password: form.password
-                })
-            }
-        )
-        const data = await respon.json();
-        console.log(data);
-    }
-    catch (error) {
-    console.log(error);
-  }
-    }
+    const [isPwdFocus, setIsPwdFocus]=useState(false);
 
     return(
         <>
@@ -118,9 +42,10 @@ export function Registrasi(){
                         </div>
 
                         <div className="col-12 col-sm-6 col-lg-12 input-css">
-                            <InputField
-                                label="Password"
-                                name="password"
+                            <p>
+                                Password
+                            </p>
+                            <input
                                 type="password"
                                 value={form.password}
                                 onChange={handleChange} 
