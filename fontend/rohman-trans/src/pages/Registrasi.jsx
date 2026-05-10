@@ -24,8 +24,8 @@ export function Registrasi(){
         const errors = {};
 
         
-        if (!form.nama) {
-            errors.nama = "Nama wajib diisi";
+        if (!form.name) {
+            errors.name = "Nama wajib diisi";
         } 
         if (!form.email) {
             errors.email = "Email wajib diisi";
@@ -44,7 +44,7 @@ export function Registrasi(){
         if (!form.verfpwd) {
             errors.verfpwd = "Password tidak sesuai!";
         } 
-        else if (form.verfpwd !== form.verfpwd) {
+        else if (form.verfpwd !== form.password) {
             errors.verfpwd = "Password tidak sesuai!";
         } 
 
@@ -53,6 +53,9 @@ export function Registrasi(){
     
      const [errors, setErrors] = useState({});
      const [loading, setLoading] = useState(false);
+     const [success, setSuccess] = useState(false);
+     const [serverError, setServerError] = useState(false);
+     
 
     async function handleSubmit(e) {
     e.preventDefault();
@@ -63,10 +66,14 @@ export function Registrasi(){
         setErrors(validationErrors);
      return;
     }
+
+    setErrors({});
+    setSuccess(false);
+setServerError(false);
     try{
         setLoading(true);
         const respon = await fetch(
-            "",
+            "https://jsonplaceholder.typicode.com/users",
              {
                 method: "POST",
                 headers: {
@@ -79,8 +86,16 @@ export function Registrasi(){
                 })
             }
         )
-        const data = await respon.json();
-        console.log(data);
+       const data = await respon.json();
+       console.log(data);
+
+        if (respon.ok){
+            setSuccess(true);
+        }
+        else{
+            setServerError(true);
+        }
+
     }
     catch (error) {
     console.log(error);
@@ -106,10 +121,10 @@ export function Registrasi(){
                         <div className="col-12 col-sm-6 col-lg-12 input-css">
                             <InputField
                                 label="Nama"
-                                name="nama"
-                                value={form.nama}
+                                name="name"
+                                value={form.name}
                                 onChange={handleChange}
-                                error={errors.nama}
+                                error={errors.name}
                                 placeholder="Masukan Nama Lengkap"
                             />
                         </div>
@@ -155,6 +170,8 @@ export function Registrasi(){
                         <button disabled={loading}>
                             {loading ? "Loading..." : "Buat Akun"}
                         </button>
+                        {success && <p>Rigistrasi Berhasil</p>}
+                        {serverError && <p>Rigistrasi gagal</p>}
                     </div>
                     
                 </form>    
