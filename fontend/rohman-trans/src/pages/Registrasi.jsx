@@ -4,7 +4,91 @@ import { InputField } from "../elements/InputField"
 import '../styles/right-style.css'
 export function Registrasi(){
 
-    const [isPwdFocus, setIsPwdFocus]=useState(false);
+    //const [isPwdFocus, setIsPwdFocus]=useState(false);
+
+    const[form, setForm] = useState({
+    name:"",
+    email:"",
+    password: "",
+    verfpwd:""
+    });
+
+    function handleChange(e) {
+    setForm({
+      ...form,
+      [e.target.name]: e.target.value
+     });
+    }
+
+     function validate(form) {
+        const errors = {};
+
+        
+        if (!form.nama) {
+            errors.nama = "Nama wajib diisi";
+        } 
+        if (!form.email) {
+            errors.email = "Email wajib diisi";
+        } else if (!form.email.includes("@")) {
+            errors.email = "Format email tidak valid";
+        }
+
+        if (!form.password) {
+            errors.password = "Password wajib diisi";
+        } else {
+        const pwdRegex = /^(?=.*[A-Z])(?=.*[0-9])(?=.*[._!])[A-Za-z0-9._!]{8,20}$/;
+        if (!pwdRegex.test(form.password)) {
+            errors.password = "Password harus 8-20 karakter, mengandung minimal 1 huruf besar, 1 angka, dan 1 simbol (.,_!)";
+        }
+    }
+        if (!form.verfpwd) {
+            errors.verfpwd = "Password tidak sesuai!";
+        } 
+        else if (form.verfpwd !== form.verfpwd) {
+            errors.verfpwd = "Password tidak sesuai!";
+        } 
+
+        return errors;
+    }
+    
+     const [errors, setErrors] = useState({});
+     const [loading, setLoading] = useState(false);
+
+    async function handleSubmit(e) {
+    e.preventDefault();
+
+    const validationErrors = validate(form);
+
+    if (Object.keys(validationErrors).length > 0) {
+        setErrors(validationErrors);
+     return;
+    }
+    try{
+        setLoading(true);
+        const respon = await fetch(
+            "",
+             {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify({
+                    name: form.name,
+                    email: form.email,
+                    password: form.password
+                })
+            }
+        )
+        const data = await respon.json();
+        console.log(data);
+    }
+    catch (error) {
+    console.log(error);
+  }
+    finally {
+    setLoading(false);
+  }
+    }
 
     return(
         <>
@@ -42,10 +126,9 @@ export function Registrasi(){
                         </div>
 
                         <div className="col-12 col-sm-6 col-lg-12 input-css">
-                            <p>
-                                Password
-                            </p>
-                            <input
+                            <InputField
+                                label="Password"
+                                name="password"
                                 type="password"
                                 value={form.password}
                                 onChange={handleChange} 
@@ -69,8 +152,8 @@ export function Registrasi(){
                     </div>
 
                      <div className="cta-css">
-                        <button>
-                            <p>Buat Akun </p>
+                        <button disabled={loading}>
+                            {loading ? "Loading..." : "Buat Akun"}
                         </button>
                     </div>
                     
