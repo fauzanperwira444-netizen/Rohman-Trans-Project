@@ -1,10 +1,13 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { InputField } from "../elements/InputField"
+import { registerUser } from "../services/authService";
 import '../styles/right-style.css'
 export function Registrasi(){
 
     //const [isPwdFocus, setIsPwdFocus]=useState(false);
+    const navigate=useNavigate();
 
     const[form, setForm] = useState({
     name:"",
@@ -69,28 +72,20 @@ export function Registrasi(){
 
     setErrors({});
     setSuccess(false);
-setServerError(false);
+    setServerError(false);
     try{
         setLoading(true);
-        const respon = await fetch(
-            "https://jsonplaceholder.typicode.com/users",
-             {
-                method: "POST",
-                headers: {
-                    "Content-Type": "application/json"
-                },
-                body: JSON.stringify({
-                    name: form.name,
-                    email: form.email,
-                    password: form.password
-                })
-            }
-        )
-       const data = await respon.json();
-       console.log(data);
+        const result = await registerUser({
+            name: form.name,
+            email: form.email,
+            password: form.password
+        })
+      
+       console.log(result.data);
 
-        if (respon.ok){
+        if (result.ok){
             setSuccess(true);
+            navigate("/login");
         }
         else{
             setServerError(true);

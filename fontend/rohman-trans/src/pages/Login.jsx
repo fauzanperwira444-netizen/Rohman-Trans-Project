@@ -2,6 +2,7 @@ import { Link } from "react-router-dom";
 import { InputField } from "../elements/InputField"
 import '../styles/right-style.css'
 import { useState } from "react";
+import { registerUser } from "../services/authService";
 export function Login(){
     const[form, setForm] = useState({
     email:"",
@@ -46,19 +47,12 @@ export function Login(){
     }
 
     try {
-        const response = await fetch(
-            "",
-             {
-                method: "POST",
-                headers: {
-                    "Content-Type": "application/json"
-                },
-                body: JSON.stringify(form)
-            });
+        const result = await registerUser({
+            email: form.email,
+            password: form.password
+        }) 
 
-        const data = await response.json();
-
-        console.log(data);
+        console.log(result.data);
 
     } 
     catch (error) {
