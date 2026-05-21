@@ -85,7 +85,7 @@ export function Registrasi(){
 
         if (result.ok){
             setSuccess(true);
-            navigate("/login");
+            navigate("/login", { replace: true });
         }
         else{
             setServerError(true);
@@ -94,6 +94,7 @@ export function Registrasi(){
     }
     catch (error) {
     console.log(error);
+    setServerError(true);
   }
     finally {
     setLoading(false);
@@ -162,7 +163,7 @@ export function Registrasi(){
                     </div>
 
                      <div className="cta-css">
-                        <button disabled={loading}>
+                        <button type="submit" disabled={loading}>
                             {loading ? "Loading..." : "Buat Akun"}
                         </button>
                         {success && <p>Rigistrasi Berhasil</p>}
